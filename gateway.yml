@@ -6,6 +6,10 @@ spring:
           uri: lb://greeting-external-service/
           predicates:
             - Path=/greeting-external/**
+        - id: greeting-external-v2
+          uri: lb://greeting-external-service-v2/
+          predicates:
+            - Path=/greeting-external-v2/**
         - id: greeting
           uri: lb://greeting-service/
           predicates:

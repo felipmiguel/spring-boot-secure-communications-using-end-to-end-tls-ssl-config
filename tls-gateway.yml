@@ -1,0 +1,23 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: greeting-external
+          uri: lb://greeting-external-service/
+          predicates:
+            - Path=/greeting-external/**
+        - id: greeting-external-v2
+          uri: lb://greeting-external-service-v2/
+          predicates:
+            - Path=/greeting-external-v2/**
+        - id: greeting
+          uri: lb://tls-greeting-service/
+          predicates:
+            - Path=/greeting/**
+      httpserver:
+        wiretap: true
+      httpclient:
+        wiretap: true
+
+reactor:
+  netty: INFO
